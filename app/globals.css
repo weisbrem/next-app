@@ -510,17 +510,6 @@
   background-color: #c90606;
 }
 
-.button--black-border {
-  color: #201f1f;
-  border: 1px solid #131212;
-  background-color: #fefafa;
-}
-
-.button--black-border:hover {
-  color: #fefafa;
-  background-color: #131212;
-}
-
 .button--add-to-cart {
   padding-right: calc(var(--button-horizontal-padding) + 7px);
   padding-left: calc(var(--button-horizontal-padding) + 26px);
