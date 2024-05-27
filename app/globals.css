@@ -1,4 +1,4 @@
-@import url('./normalize.css');
+@import url('@/styles/normalize.css');
 
 .wrapper {
   position: relative;
