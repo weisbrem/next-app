@@ -14,7 +14,7 @@ export default function Pagination() {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
-  const { totalPages } = productStore((state) => state);
+  const totalPages = productStore((state) => state.totalPages);
 
   const numberOfTotalPages = arrayOfNumbers(totalPages);
   const currentPage = Number(searchParams.get('page'));

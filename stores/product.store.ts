@@ -30,7 +30,7 @@ export const productStore = create<IProductsState>()(
         try {
           set({ isLoading: true }, false, 'product-loading-status');
           const res = await fetch(`https://c2de4f691eaaeb20.mokky.dev/products?page=${pageStart}&limit=${pageEnd}`);
-          const { items, meta } = await res.json();
+          const { items } = await res.json();
 
           set({ products: items }, false, 'product-fetch');
         } catch (error) {

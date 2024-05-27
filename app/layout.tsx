@@ -3,6 +3,8 @@ import Image from 'next/image';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 
+import HeaderCart from '@/app/components/header-cart/HeaderCart';
+
 import './globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -18,7 +20,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang='en'>
+    <html lang='ru'>
       <body className={inter.className}>
         <div className='wrapper'>
           <header className='header'>
@@ -46,14 +48,7 @@ export default function RootLayout({
                 </ul>
               </nav>
 
-              {/* запретить hover */}
-              <span className='header__cart-link' aria-label='Корзина'>
-                <svg className='header__cart-icon' width='14' height='14' aria-hidden='true'>
-                  <use xlinkHref='/img/sprite_auto.svg#icon-basket'></use>
-                </svg>
-                <span className='visually-hidden'>Перейти в корзину</span>
-                <span className='header__cart-count'>2</span>
-              </span>
+              <HeaderCart />
             </div>
           </header>
           <main className='page-content'>
