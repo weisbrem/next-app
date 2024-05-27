@@ -27,43 +27,47 @@ export default function Pagination() {
   }, []);
 
   return (
-    <div className={cn(styles['pagination'], styles['page-content__pagination'])}>
-      <ul className={styles['pagination__list']}>
-        <li className={cn(styles['pagination__page'], styles['pagination__page--prev'])}>
-          <Link
-            className={cn('link', styles['pagination__page-link'], {
-              [styles['pagination__page-link--disabled']]: currentPage === 1,
-            })}
-            href={{ query: { page: `${currentPage - 1}` } }}
-          >
-            Назад
-          </Link>
-        </li>
+    <>
+      {totalPages > 1 && (
+        <div className={cn(styles['pagination'], styles['page-content__pagination'])}>
+          <ul className={styles['pagination__list']}>
+            <li className={cn(styles['pagination__page'], styles['pagination__page--prev'])}>
+              <Link
+                className={cn('link', styles['pagination__page-link'], {
+                  [styles['pagination__page-link--disabled']]: currentPage === 1,
+                })}
+                href={{ query: { page: `${currentPage - 1}` } }}
+              >
+                Назад
+              </Link>
+            </li>
 
-        {numberOfTotalPages.map((page) => (
-          <li
-            key={page}
-            className={cn(styles['pagination__page'], {
-              [styles['pagination__page--active']]: currentPage === page,
-            })}
-          >
-            <Link className={cn('link', styles['pagination__page-link'])} href={{ query: { page: `${page}` } }}>
-              {page}
-            </Link>
-          </li>
-        ))}
+            {numberOfTotalPages.map((page) => (
+              <li
+                key={page}
+                className={cn(styles['pagination__page'], {
+                  [styles['pagination__page--active']]: currentPage === page,
+                })}
+              >
+                <Link className={cn('link', styles['pagination__page-link'])} href={{ query: { page: `${page}` } }}>
+                  {page}
+                </Link>
+              </li>
+            ))}
 
-        <li className={cn(styles['pagination__page'], styles['pagination__page--next'])}>
-          <Link
-            className={cn('link', styles['pagination__page-link'], {
-              [styles['pagination__page-link--disabled']]: currentPage === 5,
-            })}
-            href={{ query: { page: `${currentPage + 1}` } }}
-          >
-            Далее
-          </Link>
-        </li>
-      </ul>
-    </div>
+            <li className={cn(styles['pagination__page'], styles['pagination__page--next'])}>
+              <Link
+                className={cn('link', styles['pagination__page-link'], {
+                  [styles['pagination__page-link--disabled']]: currentPage === 5,
+                })}
+                href={{ query: { page: `${currentPage + 1}` } }}
+              >
+                Далее
+              </Link>
+            </li>
+          </ul>
+        </div>
+      )}
+    </>
   );
 }
