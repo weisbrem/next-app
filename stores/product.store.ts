@@ -4,6 +4,8 @@ import { devtools } from 'zustand/middleware';
 
 interface IProductsState {
   products: IProduct[];
+  product: IProduct | null;
+  fetchOneProduct: (productId: string) => Promise<void>;
   fetchProducts: (currentPage: string) => Promise<void>;
   getNumberOfTotalPages: () => Promise<void>;
   hasFetchError: boolean;
@@ -17,6 +19,7 @@ export const productStore = create<IProductsState>()(
   devtools(
     (set) => ({
       products: [],
+      product: null,
       hasFetchError: false,
       isLoading: false,
       totalPages: 1,
@@ -50,6 +53,22 @@ export const productStore = create<IProductsState>()(
             console.log(error.message);
             set({ hasFetchError: true }, false, 'total-number-fetch-error');
           }
+        }
+      },
+      fetchOneProduct: async (productId: string) => {
+        try {
+          set({ isLoading: true }, false, 'product-loading-status');
+          const res = await fetch(`https://c2de4f691eaaeb20.mokky.dev/products/${productId}`);
+          const data = await res.json();
+
+          set({ product: data }, false, 'one-product-fetch');
+        } catch (error) {
+          if (error instanceof Error) {
+            console.log(error.message);
+            set({ hasFetchError: true }, false, 'one-product-fetch-error');
+          }
+        } finally {
+          set({ isLoading: false }, false, 'product-loading-status');
         }
       },
     }),
