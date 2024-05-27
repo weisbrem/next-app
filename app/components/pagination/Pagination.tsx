@@ -8,6 +8,7 @@ import { useRouter, useSearchParams, usePathname } from 'next/navigation';
 
 import styles from './Pagination.module.css';
 import { productStore } from '@/stores/product.store';
+import { arrayOfNumbers } from '@/utils/get-array-of-numbers';
 
 export default function Pagination() {
   const searchParams = useSearchParams();
@@ -15,7 +16,7 @@ export default function Pagination() {
   const { replace } = useRouter();
   const { totalPages } = productStore((state) => state);
 
-  const arrayOfTotalPages = Array.from({ length: totalPages }, (v, i) => i + 1);
+  const numberOfTotalPages = arrayOfNumbers(totalPages);
   const currentPage = Number(searchParams.get('page'));
 
   useEffect(() => {
@@ -38,7 +39,8 @@ export default function Pagination() {
             Назад
           </Link>
         </li>
-        {arrayOfTotalPages.map((page) => (
+
+        {numberOfTotalPages.map((page) => (
           <li
             key={page}
             className={cn(styles['pagination__page'], {
