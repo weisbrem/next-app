@@ -70,7 +70,6 @@
 .container {
   width: 100%;
   min-width: 1020px;
-  max-width: 1020px;
   margin: 0 auto;
   padding: 0 40px;
 }
@@ -90,6 +89,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+
+  gap: 30px;
 
   width: 100%;
   padding-right: 66px;
@@ -167,8 +169,6 @@
 .main-nav {
   display: block;
 
-  margin-right: 27px;
-
   font-size: 14px;
   line-height: 20px;
 
@@ -209,7 +209,7 @@
 .footer__container {
   display: grid;
 
-  grid-column-gap: 25px;
+  gap: 25px;
   grid-template-areas: 'logo info links contacts' 'socials info links contacts';
   grid-template-columns: 220px 145px 283px 150px;
   grid-template-rows: 125px auto;
@@ -722,4 +722,55 @@
 .socials__icon {
   width: 24px;
   height: 24px;
+}
+
+@media (max-width: 1020px) {
+  .container {
+    min-width: auto;
+    padding: 0 20px;
+  }
+
+  .header__logo {
+    margin-right: 0;
+  }
+
+  .footer__container {
+    gap: 16px;
+    justify-content: center;
+    grid-template-areas:
+      'info links'
+      'info links'
+      'logo contacts'
+      'socials contacts';
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .footer__nav-section {
+    margin: 0 auto;
+  }
+
+  .footer__logo {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .socials__list {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 767px) {
+  .header__wrapper {
+    justify-content: center;
+  }
+
+  .footer__container {
+    grid-template-areas:
+      'info'
+      'links'
+      'contacts'
+      'logo'
+      'socials';
+    grid-template-columns: 1fr;
+  }
 }
